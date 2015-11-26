@@ -4,9 +4,19 @@ include("connection_bdd.php");
 $name = $_POST['login'];
 $pwd = $_POST['password'];
 
-$sql = "SELECT pass FROM modo WHERE nom= '".$name."'";
+$sql = "SELECT nom FROM modo";
 foreach  ($bdd->query($sql) as $row) {
-	$pass = $row['pass'];
+	if($name == $row['nom'])
+	{
+		$pseudovalide = 1;
+	}
+}
+if($pseudovalide == 1)
+{
+	$sql = "SELECT pass FROM modo WHERE nom= '".$name."'";
+	foreach  ($bdd->query($sql) as $row) {
+		$pass = $row['pass'];
+	}
 }
 
 if (md5($pwd) == $pass){
