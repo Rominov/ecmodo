@@ -58,21 +58,16 @@
 						<span>Protocole</span>
 					</a>	  				
 				</li>
-				<li>					
-					<a href="./candidatures.php">
-						<span>Sondages & Votes</span>
-					</a>	  				
-				</li>
-						
 				<?php
 				include("connection_bdd.php");
 				$validateur = 0;
-				$blbl = "SELECT * FROM modo where Validateur=1 AND nom='".$_COOKIE['connexion']."'";
+				$blbl = "SELECT * FROM modo where (Validateur=1 OR Validateur=2) AND nom='".$_COOKIE['connexion']."'";
 				$req = $bdd->query($blbl);
 				while ($donneesreq = $req->fetch()) {
 					$validateur=1;
 				}
 				if($validateur==1){
+				echo "<li><a href='./candidatures.php'><span>Sondages & Votes</span></a></li>";
 				echo "<li><a href='./validercandidatures.php'><span>Liste des Candidatures</span></a></li>";
 				}
 				?>
