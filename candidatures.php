@@ -85,13 +85,13 @@ if(!isset($_COOKIE['connexion']))
 								</br>
 								</br>
 								<?php
-								if(isset($_SESSION['finvote']))
+								/*if(isset($_SESSION['finvote']))
 								{
 									$finvote = 1;
-								}
+								}*/
 								
-								if($finvote == 1)
-								{
+								//if($finvote == 1)
+								//{
 								$aff = $bdd->prepare('SELECT * FROM recrutement WHERE valider=1');
 								$aff->execute(array());
 								while ($donnees_aff = $aff->fetch()){
@@ -153,7 +153,7 @@ if(!isset($_COOKIE['connexion']))
 									}
 								echo"</td></form></tr>";
 								}
-								}
+								//}
 								?>
 								</tbody>
 							</table>
