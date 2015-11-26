@@ -21,5 +21,5 @@ else
 	echo "<br>";
 	echo "<br>";
 	
-	echo "<a href='recuppwd.php'>Récupérer votre mot de passe</a>";
+	//echo "<a href='recuppwd.php'>Récupérer votre mot de passe</a>";
 }
