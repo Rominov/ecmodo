@@ -52,6 +52,22 @@ if(!isset($_COOKIE['connexion']))
 					<br><center><h1>Vote des Candidatures :</h1></center>
 					<br>					
 						<center><h3><i> Attention ! Tout vote rentré est définitif ! </i></h3></center>
+					<br>
+						<?php 
+						$blbl = "SELECT * FROM modo where Validateur=2 AND nom='".$_COOKIE['connexion']."'";
+						$req = $bdd->query($blbl);
+						while ($donneesreq = $req->fetch()) {
+							$sadmin=1;
+						}
+						
+						if($sadmin == 1)
+						{
+							echo "<form method=post action='terminervote.php'>";
+							echo "<center><button type='submit' class='btn btn-success'>Mettre fin aux votes</button></center>";
+							echo "</form>";
+						}
+						
+						?>
 	      			<div class="widget widget-table action-table">
 						</div> <!-- /widget-header -->
 						<div class="widget-content">
@@ -69,6 +85,13 @@ if(!isset($_COOKIE['connexion']))
 								</br>
 								</br>
 								<?php
+								if(isset($_SESSION['finvote']))
+								{
+									$finvote = 1;
+								}
+								
+								if($finvote == 1)
+								{
 								$aff = $bdd->prepare('SELECT * FROM recrutement WHERE valider=1');
 								$aff->execute(array());
 								while ($donnees_aff = $aff->fetch()){
@@ -129,6 +152,7 @@ if(!isset($_COOKIE['connexion']))
 								<?php	
 									}
 								echo"</td></form></tr>";
+								}
 								}
 								?>
 								</tbody>
